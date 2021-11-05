@@ -34,6 +34,7 @@ OPTION:
     3-ml-shared-bionic : CUDA CI, 3-ml-shared-bionic
     4-ml-bionic        : CUDA CI, 4-ml-bionic
     5-ml-focal         : CUDA CI, 5-ml-focal
+    dpcpp              : DPCPP (oneAPI).
 "
 
 HOST_OPEN3D_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
@@ -212,6 +213,19 @@ export_env_5-ml-focal() {
     export BUILD_PYTORCH_OPS=ON
 }
 
+dpcpp_build() {
+    pushd "${HOST_OPEN3D_ROOT}"
+    docker build \
+        -t "${DOCKER_TAG}" \
+        -f .github/workflows/Dockerfile.dpcpp .
+    popd
+}
+
+dpcpp_export_env() {
+    export DOCKER_TAG=open3d-ci:dpcpp
+}
+
+
 function main () {
     if [[ "$#" -ne 1 ]]; then
         echo "Error: invalid number of arguments: $#." >&2
@@ -264,6 +278,10 @@ function main () {
         5-ml-focal)
             export_env_5-ml-focal
             cuda_build
+            ;;
+        dpcpp)
+            dpcpp_export_env
+            dpcpp_build
             ;;
         *)
             echo "Error: invalid argument: ${1}." >&2

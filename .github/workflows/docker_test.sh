@@ -19,6 +19,7 @@ OPTION:
     3-ml-shared-bionic : CUDA CI, 3-ml-shared-bionic
     4-ml-bionic        : CUDA CI, 4-ml-bionic
     5-ml-focal         : CUDA CI, 5-ml-focal
+    dpcpp              : DPCPP (oneAPI).
 "
 
 HOST_OPEN3D_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
@@ -101,6 +102,15 @@ test_cpp_python_linking_uninstall() {
     test_cpp_python_linking_uninstall
 }
 
+dpcpp_test() {
+    dpcpp_export_env
+
+    docker run -i --rm --gpus all ${DOCKER_TAG} /bin/bash -c "\
+        ls -alh \
+     && uname -a \
+    "
+}
+
 if [[ "$#" -ne 1 ]]; then
     echo "Error: invalid number of arguments." >&2
     print_usage_and_exit
@@ -119,6 +129,9 @@ case "$1" in
         ;;
     5-ml-focal)
         5-ml-focal
+        ;;
+    dpcpp)
+        dpcpp_test
         ;;
     *)
         echo "Error: invalid argument: ${1}." >&2
