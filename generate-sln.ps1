@@ -2,15 +2,15 @@ $currentDirectory=Get-Location
 echo $currentDirectory
 
 # build for x64
-$x64_build_dir=$currentDirectory.Path + "\build_X64"
-$x64_install_dir=$currentDirectory.Path + "\install_X64" 
+$x64_build_dir=$currentDirectory.Path + "\build_x64"
+$x64_install_dir=$currentDirectory.Path + "\install_x64" 
 remove-item -path ($x64_build_dir) -Force -Recurse -ErrorAction SilentlyContinue 
 remove-item -path ($x64_install_dir) -Force -Recurse -ErrorAction SilentlyContinue  
 mkdir ($x64_build_dir)
 mkdir ($x64_install_dir)
 cd $x64_build_dir
 
-cmake -G "Visual Studio 16 2019" -A X64 -DCMAKE_INSTALL_PREFIX="../install_X64/" ..
+cmake -G "Visual Studio 16 2019" -A X64 -DCMAKE_INSTALL_PREFIX="../install_x64/" ..
 cmake --build . --config Release --target ALL_BUILD
 cmake --build . --config Release --target INSTALL
 
