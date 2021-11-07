@@ -13,7 +13,7 @@ set(ALL_SOURCE_FILES
     LineSet.cpp
     LineSetFactory.cpp
     MeshBase.cpp
-    Octree.cpp
+    # Octree.cpp
     PointCloud.cpp
     PointCloudCluster.cpp
     PointCloudFactory.cpp
@@ -21,18 +21,18 @@ set(ALL_SOURCE_FILES
     Qhull.cpp
     RGBDImage.cpp
     RGBDImageFactory.cpp
-    SurfaceReconstructionAlphaShape.cpp
-    SurfaceReconstructionBallPivoting.cpp
-    SurfaceReconstructionPoisson.cpp
+    # SurfaceReconstructionAlphaShape.cpp
+    # SurfaceReconstructionBallPivoting.cpp
+    # SurfaceReconstructionPoisson.cpp
     TetraMesh.cpp
     TetraMeshFactory.cpp
     TriangleMesh.cpp
-    TriangleMeshDeformation.cpp
+    # TriangleMeshDeformation.cpp
     TriangleMeshFactory.cpp
-    TriangleMeshSimplification.cpp
-    TriangleMeshSubdivide.cpp
-    VoxelGrid.cpp
-    VoxelGridFactory.cpp
+    # TriangleMeshSimplification.cpp
+    # TriangleMeshSubdivide.cpp
+    # VoxelGrid.cpp
+    # VoxelGridFactory.cpp
     )
 
 # create object library

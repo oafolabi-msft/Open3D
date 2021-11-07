@@ -25,17 +25,17 @@ endif()
 include(CMakeDependentOption)
 
 # Open3D build options
-option(BUILD_SHARED_LIBS          "Build shared libraries"                   OFF)
-option(BUILD_EXAMPLES             "Build Open3D examples programs"           ON )
+option(BUILD_SHARED_LIBS          "Build shared libraries"                   ON)
+option(BUILD_EXAMPLES             "Build Open3D examples programs"           OFF )
 option(BUILD_UNIT_TESTS           "Build Open3D unit tests"                  OFF)
 option(BUILD_BENCHMARKS           "Build the micro benchmarks"               OFF)
-option(BUILD_PYTHON_MODULE        "Build the python module"                  ON )
+option(BUILD_PYTHON_MODULE        "Build the python module"                  OFF )
 option(BUILD_CUDA_MODULE          "Build the CUDA module"                    OFF)
 option(BUILD_COMMON_CUDA_ARCHS    "Build for common CUDA GPUs (for release)" OFF)
-option(BUILD_CACHED_CUDA_MANAGER  "Build the cached CUDA memory manager"     ON )
-option(BUILD_GUI                  "Builds new GUI"                           ON )
+option(BUILD_CACHED_CUDA_MANAGER  "Build the cached CUDA memory manager"     OFF )
+option(BUILD_GUI                  "Builds new GUI"                           OFF )
 option(WITH_OPENMP                "Use OpenMP multi-threading"               ON )
-option(WITH_IPPICV                "Use Intel Performance Primitives"         ON )
+option(WITH_IPPICV                "Use Intel Performance Primitives"         OFF )
 option(ENABLE_HEADLESS_RENDERING  "Use OSMesa for headless rendering"        OFF)
 cmake_dependent_option(
        STATIC_WINDOWS_RUNTIME     "Use static (MT/MTd) Windows runtime"      ON

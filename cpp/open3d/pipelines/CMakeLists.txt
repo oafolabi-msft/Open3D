@@ -1,12 +1,12 @@
 set(ALL_SOURCE_FILES
-    color_map/NonRigidOptimizer.cpp
-    color_map/ImageWarpingField.cpp
-    color_map/ColorMapUtils.cpp
-    color_map/RigidOptimizer.cpp
-    integration/UniformTSDFVolume.cpp
-    integration/ScalableTSDFVolume.cpp
-    odometry/Odometry.cpp
-    odometry/RGBDOdometryJacobian.cpp
+    # color_map/NonRigidOptimizer.cpp
+    # color_map/ImageWarpingField.cpp
+    # color_map/ColorMapUtils.cpp
+    # color_map/RigidOptimizer.cpp
+    # integration/UniformTSDFVolume.cpp
+    # integration/ScalableTSDFVolume.cpp
+    # odometry/Odometry.cpp
+    # odometry/RGBDOdometryJacobian.cpp
     registration/GlobalOptimization.cpp
     registration/RobustKernel.cpp
     registration/Registration.cpp
