@@ -36,9 +36,9 @@ namespace io {
 static std::map<std::string, FileGeometry (*)(const std::string&)> gExt2Func = {
         {"glb", ReadFileGeometryTypeGLTF},
         {"gltf", ReadFileGeometryTypeGLTF},
-        {"obj", ReadFileGeometryTypeOBJ},
-        {"fbx", ReadFileGeometryTypeFBX},
-        {"off", ReadFileGeometryTypeOFF},
+        // {"obj", ReadFileGeometryTypeOBJ},
+        // {"fbx", ReadFileGeometryTypeFBX},
+        // {"off", ReadFileGeometryTypeOFF},
         {"pcd", ReadFileGeometryTypePCD},
         {"ply", ReadFileGeometryTypePLY},
         {"pts", ReadFileGeometryTypePTS},

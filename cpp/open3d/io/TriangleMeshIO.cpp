@@ -43,12 +43,12 @@ static const std::unordered_map<
                            const ReadTriangleMeshOptions &)>>
         file_extension_to_trianglemesh_read_function{
                 {"ply", ReadTriangleMeshFromPLY},
-                {"stl", ReadTriangleMeshUsingASSIMP},
-                {"obj", ReadTriangleMeshUsingASSIMP},
-                {"off", ReadTriangleMeshFromOFF},
-                {"gltf", ReadTriangleMeshUsingASSIMP},
-                {"glb", ReadTriangleMeshUsingASSIMP},
-                {"fbx", ReadTriangleMeshUsingASSIMP},
+                // {"stl", ReadTriangleMeshUsingASSIMP},
+                // {"obj", ReadTriangleMeshUsingASSIMP},
+                // {"off", ReadTriangleMeshFromOFF},
+                // {"gltf", ReadTriangleMeshUsingASSIMP},
+                // {"glb", ReadTriangleMeshUsingASSIMP},
+                // {"fbx", ReadTriangleMeshUsingASSIMP},
         };
 
 static const std::unordered_map<
@@ -64,9 +64,9 @@ static const std::unordered_map<
         file_extension_to_trianglemesh_write_function{
                 {"ply", WriteTriangleMeshToPLY},
                 {"stl", WriteTriangleMeshToSTL},
-                {"obj", WriteTriangleMeshToOBJ},
-                {"off", WriteTriangleMeshToOFF},
-                {"gltf", WriteTriangleMeshToGLTF},
+                // {"obj", WriteTriangleMeshToOBJ},
+                // {"off", WriteTriangleMeshToOFF},
+                // {"gltf", WriteTriangleMeshToGLTF},
                 {"glb", WriteTriangleMeshToGLTF},
         };
 

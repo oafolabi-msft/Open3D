@@ -1,12 +1,23 @@
 # build
-set(ALL_SOURCE_FILES
-    Console.cpp
-    Eigen.cpp
-    # FileSystem.cpp
-    Helper.cpp
-    IJsonConvertible.cpp
-    Timer.cpp
-    )
+if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
+    set(ALL_SOURCE_FILES
+        Console.cpp
+        Eigen.cpp
+        FileSystem.cpp
+        Helper.cpp
+        IJsonConvertible.cpp
+        Timer.cpp
+        )
+else()
+    set(ALL_SOURCE_FILES
+        Console.cpp
+        Eigen.cpp
+        # FileSystem.cpp
+        Helper.cpp
+        IJsonConvertible.cpp
+        Timer.cpp
+        )
+endif()
 
 # create object library
 add_library(utility OBJECT ${ALL_SOURCE_FILES})
