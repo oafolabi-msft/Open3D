@@ -17,13 +17,13 @@ configure_file("${PROJECT_SOURCE_DIR}/cpp/open3d/Open3DConfig.h.in"
                "${PROJECT_SOURCE_DIR}/cpp/open3d/Open3DConfig.h")
 
 # Subdirectories
-# add_subdirectory(camera)
+add_subdirectory(camera)
 # add_subdirectory(core)
 add_subdirectory(geometry)
 # add_subdirectory(t/geometry)
 # add_subdirectory(t/io)
 # add_subdirectory(t/pipelines)
-# add_subdirectory(io)
+add_subdirectory(io)
 # add_subdirectory(ml)
 add_subdirectory(pipelines)
 add_subdirectory(utility)
@@ -38,11 +38,11 @@ if (BUILD_WEBRTC)
 endif()
 
 # Source group for Visual Studio
-# add_source_group(camera)
+add_source_group(camera)
 # add_source_group(core)
 add_source_group(geometry)
 # add_source_group(tgeometry)
-# add_source_group(io)
+add_source_group(io)
 # add_source_group(tio)
 # add_source_group(ml)
 add_source_group(pipelines)
@@ -52,9 +52,27 @@ add_source_group(utility)
 
 # note: adding at least one real source file to any target that references
 # reference: https://cmake.org/cmake/help/v3.12/command/add_library.html#object-libraries
+if(NOT ${CMAKE_GENERATOR_PLATFORM} STREQUAL "ARM64")
 add_library(${CMAKE_PROJECT_NAME}
     Open3DConfig.cpp
-    # $<TARGET_OBJECTS:camera>
+    $<TARGET_OBJECTS:camera>
+    # $<TARGET_OBJECTS:core>
+    $<TARGET_OBJECTS:geometry>
+    # $<TARGET_OBJECTS:tgeometry>
+    $<TARGET_OBJECTS:io>
+    # $<TARGET_OBJECTS:tio>
+    # $<TARGET_OBJECTS:ml_contrib>
+    $<TARGET_OBJECTS:pipelines>
+    # $<TARGET_OBJECTS:tpipelines>
+    $<TARGET_OBJECTS:utility>
+    # $<TARGET_OBJECTS:visualization>
+    ${GUI_OBJECTS}
+    ${WEBRTC_OBJECTS}
+)
+else()
+add_library(${CMAKE_PROJECT_NAME}
+    Open3DConfig.cpp
+    $<TARGET_OBJECTS:camera>
     # $<TARGET_OBJECTS:core>
     $<TARGET_OBJECTS:geometry>
     # $<TARGET_OBJECTS:tgeometry>
@@ -68,6 +86,7 @@ add_library(${CMAKE_PROJECT_NAME}
     ${GUI_OBJECTS}
     ${WEBRTC_OBJECTS}
 )
+endif()
 open3d_show_and_abort_on_warning(${PROJECT_NAME})
 open3d_set_global_properties(${PROJECT_NAME})
 open3d_set_open3d_lib_properties(${PROJECT_NAME})

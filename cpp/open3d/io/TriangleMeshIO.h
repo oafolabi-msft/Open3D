@@ -97,37 +97,37 @@ bool WriteTriangleMeshToSTL(const std::string &filename,
                             bool write_triangle_uvs,
                             bool print_progress);
 
-// Currently enable_post_processing not used in ReadTriangleMeshFromOBJ.
-bool ReadTriangleMeshFromOBJ(const std::string &filename,
-                             geometry::TriangleMesh &mesh,
-                             const ReadTriangleMeshOptions &params);
+// // Currently enable_post_processing not used in ReadTriangleMeshFromOBJ.
+// bool ReadTriangleMeshFromOBJ(const std::string &filename,
+//                              geometry::TriangleMesh &mesh,
+//                              const ReadTriangleMeshOptions &params);
 
-bool WriteTriangleMeshToOBJ(const std::string &filename,
-                            const geometry::TriangleMesh &mesh,
-                            bool write_ascii,
-                            bool compressed,
-                            bool write_vertex_normals,
-                            bool write_vertex_colors,
-                            bool write_triangle_uvs,
-                            bool print_progress);
+// bool WriteTriangleMeshToOBJ(const std::string &filename,
+//                             const geometry::TriangleMesh &mesh,
+//                             bool write_ascii,
+//                             bool compressed,
+//                             bool write_vertex_normals,
+//                             bool write_vertex_colors,
+//                             bool write_triangle_uvs,
+//                             bool print_progress);
 
-bool ReadTriangleMeshUsingASSIMP(const std::string &filename,
-                                 geometry::TriangleMesh &mesh,
-                                 const ReadTriangleMeshOptions &params);
+// bool ReadTriangleMeshUsingASSIMP(const std::string &filename,
+//                                  geometry::TriangleMesh &mesh,
+//                                  const ReadTriangleMeshOptions &params);
 
-// Currently enable_post_processing not used in ReadTriangleMeshFromOFF.
-bool ReadTriangleMeshFromOFF(const std::string &filename,
-                             geometry::TriangleMesh &mesh,
-                             const ReadTriangleMeshOptions &params);
+// // Currently enable_post_processing not used in ReadTriangleMeshFromOFF.
+// bool ReadTriangleMeshFromOFF(const std::string &filename,
+//                              geometry::TriangleMesh &mesh,
+//                              const ReadTriangleMeshOptions &params);
 
-bool WriteTriangleMeshToOFF(const std::string &filename,
-                            const geometry::TriangleMesh &mesh,
-                            bool write_ascii,
-                            bool compressed,
-                            bool write_vertex_normals,
-                            bool write_vertex_colors,
-                            bool write_triangle_uvs,
-                            bool print_progress);
+// bool WriteTriangleMeshToOFF(const std::string &filename,
+//                             const geometry::TriangleMesh &mesh,
+//                             bool write_ascii,
+//                             bool compressed,
+//                             bool write_vertex_normals,
+//                             bool write_vertex_colors,
+//                             bool write_triangle_uvs,
+//                             bool print_progress);
 
 // Currently enable_post_processing not used in ReadTriangleMeshFromGLTF.
 bool ReadTriangleMeshFromGLTF(const std::string &filename,
