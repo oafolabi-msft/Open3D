@@ -52,7 +52,7 @@ add_source_group(utility)
 
 # note: adding at least one real source file to any target that references
 # reference: https://cmake.org/cmake/help/v3.12/command/add_library.html#object-libraries
-if(NOT ${CMAKE_GENERATOR_PLATFORM} STREQUAL "AMD64")
+if(NOT ${CMAKE_GENERATOR_PLATFORM} STREQUAL "ARM64")
 add_library(${CMAKE_PROJECT_NAME}
     Open3DConfig.cpp
     $<TARGET_OBJECTS:camera>
