@@ -1,4 +1,4 @@
-if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
+if(NOT ${CMAKE_GENERATOR_PLATFORM} STREQUAL "AMD64")
 # Build
 set(CLASS_IO_SOURCE_FILES
     # FeatureIO.cpp
@@ -64,9 +64,9 @@ set(IO_ALL_SOURCE_FILES ${CLASS_IO_SOURCE_FILES} ${FILE_FORMAT_SOURCE_FILES})
 
 # Create object library
 add_library(io OBJECT
-            ${IO_ALL_SOURCE_FILES}
-            ${RPLY_SOURCE_FILES}
-            ${LIBLZF_SOURCE_FILES})
+            ${IO_ALL_SOURCE_FILES})
+            # ${RPLY_SOURCE_FILES}
+            # ${LIBLZF_SOURCE_FILES})
 open3d_show_and_abort_on_warning(io)
 open3d_set_global_properties(io)
 open3d_set_open3d_lib_properties(io)

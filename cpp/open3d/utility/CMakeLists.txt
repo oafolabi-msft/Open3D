@@ -1,5 +1,5 @@
 # build
-if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
+if(NOT ${CMAKE_GENERATOR_PLATFORM} STREQUAL "AMD64")
     set(ALL_SOURCE_FILES
         Console.cpp
         Eigen.cpp
