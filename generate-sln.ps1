@@ -81,6 +81,9 @@ $vsPath=($visualStudioRoot.FullName + "\debug_nonredist\x64\" )
 cp ($vsPath + "*\*.dll") ($x64_install_dir + "\bin\")
 cd $currentDirectory.Path
 
+# ucrtbased.dll, copy over
+cp ("C:\Program Files (x86)\Windows Kits\10\bin\x64\ucrt\*.dll") ($x64_install_dir + "\bin\")
+
 
 # build for arm64
 $arm64_build_dir=$currentDirectory.Path + "\build_ARM64_Debug"
@@ -102,3 +105,6 @@ cp ($arm64_build_dir+ "\*\lib\*.lib") ($arm64_install_dir + "\lib\")
 $vsPath=($visualStudioRoot.FullName + "\debug_nonredist\arm64\" )
 cp ($vsPath + "*\*.dll") ($arm64_install_dir + "\bin\")
 cd $currentDirectory.Path
+
+# ucrtbased.dll, copy over
+cp ("C:\Program Files (x86)\Windows Kits\10\bin\arm64\ucrt\*.dll") ($arm64_install_dir + "\bin\")
