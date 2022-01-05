@@ -37,12 +37,16 @@ namespace Eigen {
 /// Extending Eigen namespace by adding frequently used matrix type
 typedef Eigen::Matrix<double, 6, 6> Matrix6d;
 typedef Eigen::Matrix<double, 6, 1> Vector6d;
+typedef Eigen::Matrix<float, 6, 6> Matrix6f;
+typedef Eigen::Matrix<float, 6, 1> Vector6f;
 typedef Eigen::Matrix<uint8_t, 3, 1> Vector3uint8;
 
 /// Use Eigen::DontAlign for matrices inside classes which are exposed in the
 /// Open3D headers https://github.com/intel-isl/Open3D/issues/653
 typedef Eigen::Matrix<double, 6, 6, Eigen::DontAlign> Matrix6d_u;
 typedef Eigen::Matrix<double, 4, 4, Eigen::DontAlign> Matrix4d_u;
+typedef Eigen::Matrix<float, 6, 6, Eigen::DontAlign> Matrix6f_u;
+typedef Eigen::Matrix<float, 4, 4, Eigen::DontAlign> Matrix4f_u;
 
 }  // namespace Eigen
 /// @endcond
@@ -53,15 +57,21 @@ namespace utility {
 using Matrix4d_allocator = Eigen::aligned_allocator<Eigen::Matrix4d>;
 using Matrix6d_allocator = Eigen::aligned_allocator<Eigen::Matrix6d>;
 using Vector2d_allocator = Eigen::aligned_allocator<Eigen::Vector2d>;
+using Matrix4f_allocator = Eigen::aligned_allocator<Eigen::Matrix4f>;
+using Matrix6f_allocator = Eigen::aligned_allocator<Eigen::Matrix6f>;
+using Vector2f_allocator = Eigen::aligned_allocator<Eigen::Vector2f>;
 using Vector3uint8_allocator = Eigen::aligned_allocator<Eigen::Vector3uint8>;
 using Vector4i_allocator = Eigen::aligned_allocator<Eigen::Vector4i>;
 using Vector4d_allocator = Eigen::aligned_allocator<Eigen::Vector4d>;
 using Vector6d_allocator = Eigen::aligned_allocator<Eigen::Vector6d>;
+using Vector4f_allocator = Eigen::aligned_allocator<Eigen::Vector4f>;
+using Vector6f_allocator = Eigen::aligned_allocator<Eigen::Vector6f>;
 
 /// Function to transform 6D motion vector to 4D motion matrix
 /// Reference:
 /// https://eigen.tuxfamily.org/dox/group__TutorialGeometry.html#TutorialGeoTransform
 Eigen::Matrix4d TransformVector6dToMatrix4d(const Eigen::Vector6d &input);
+Eigen::Matrix4f TransformVector6fToMatrix4f(const Eigen::Vector6f &input);
 
 /// Function to transform 4D motion matrix to 6D motion vector
 /// this is consistent with the matlab function in
@@ -69,6 +79,7 @@ Eigen::Matrix4d TransformVector6dToMatrix4d(const Eigen::Vector6d &input);
 /// Reference:
 /// https://github.com/qianyizh/ElasticReconstruction/blob/master/Matlab_Toolbox/Core/mrEvaluateRegistration.m
 Eigen::Vector6d TransformMatrix4dToVector6d(const Eigen::Matrix4d &input);
+Eigen::Vector6f TransformMatrix4fToVector6f(const Eigen::Matrix4f &input);
 
 /// Function to solve Ax=b
 std::tuple<bool, Eigen::VectorXd> SolveLinearSystemPSD(
@@ -79,11 +90,21 @@ std::tuple<bool, Eigen::VectorXd> SolveLinearSystemPSD(
         bool check_det = false,
         bool check_psd = false);
 
+std::tuple<bool, Eigen::VectorXf> SolveLinearSystemPSDf(
+        const Eigen::MatrixXf &A,
+        const Eigen::VectorXf &b,
+        bool prefer_sparse = false,
+        bool check_symmetric = false,
+        bool check_det = false,
+        bool check_psd = false);
+
 /// Function to solve Jacobian system
 /// Input: 6x6 Jacobian matrix and 6-dim residual vector.
 /// Output: tuple of is_success, 4x4 extrinsic matrices.
 std::tuple<bool, Eigen::Matrix4d> SolveJacobianSystemAndObtainExtrinsicMatrix(
         const Eigen::Matrix6d &JTJ, const Eigen::Vector6d &JTr);
+std::tuple<bool, Eigen::Matrix4f> SolveJacobianSystemAndObtainExtrinsicMatrixf(
+        const Eigen::Matrix6f &JTJ, const Eigen::Vector6f &JTr);
 
 /// Function to solve Jacobian system
 /// Input: 6nx6n Jacobian matrix and 6n-dim residual vector.
@@ -91,6 +112,9 @@ std::tuple<bool, Eigen::Matrix4d> SolveJacobianSystemAndObtainExtrinsicMatrix(
 std::tuple<bool, std::vector<Eigen::Matrix4d, Matrix4d_allocator>>
 SolveJacobianSystemAndObtainExtrinsicMatrixArray(const Eigen::MatrixXd &JTJ,
                                                  const Eigen::VectorXd &JTr);
+ std::tuple<bool, std::vector<Eigen::Matrix4f, Matrix4f_allocator>>
+SolveJacobianSystemAndObtainExtrinsicMatrixArrayf(const Eigen::MatrixXf &JTJ,
+                                                 const Eigen::VectorXf &JTr);                                                
 
 /// Function to compute JTJ and Jtr
 /// Input: function pointer f and total number of rows of Jacobian matrix
@@ -100,6 +124,12 @@ SolveJacobianSystemAndObtainExtrinsicMatrixArray(const Eigen::MatrixXd &JTJ,
 template <typename MatType, typename VecType>
 std::tuple<MatType, VecType, double> ComputeJTJandJTr(
         std::function<void(int, VecType &, double &, double &)> f,
+        int iteration_num,
+        bool verbose = true);
+
+template <typename MatType, typename VecType>
+std::tuple<MatType, VecType, float> ComputeJTJandJTrf(
+        std::function<void(int, VecType &, float &, float &)> f,
         int iteration_num,
         bool verbose = true);
 
@@ -118,26 +148,51 @@ std::tuple<MatType, VecType, double> ComputeJTJandJTr(
         int iteration_num,
         bool verbose = true);
 
+template <typename MatType, typename VecType>
+std::tuple<MatType, VecType, float> ComputeJTJandJTrf(
+        std::function<
+                void(int,
+                     std::vector<VecType, Eigen::aligned_allocator<VecType>> &,
+                     std::vector<float> &,
+                     std::vector<float> &)> f,
+        int iteration_num,
+        bool verbose = true);
+
 Eigen::Matrix3d RotationMatrixX(double radians);
 Eigen::Matrix3d RotationMatrixY(double radians);
 Eigen::Matrix3d RotationMatrixZ(double radians);
 
+Eigen::Matrix3f RotationMatrixXf(float radians);
+Eigen::Matrix3f RotationMatrixYf(float radians);
+Eigen::Matrix3f RotationMatrixZf(float radians);
+
 /// Color conversion from double [0,1] to uint8_t 0-255; this does proper
 /// clipping and rounding
 Eigen::Vector3uint8 ColorToUint8(const Eigen::Vector3d &color);
+Eigen::Vector3uint8 ColorToUint8f(const Eigen::Vector3f &color);
 /// Color conversion from uint8_t 0-255 to double [0,1]
 Eigen::Vector3d ColorToDouble(uint8_t r, uint8_t g, uint8_t b);
 Eigen::Vector3d ColorToDouble(const Eigen::Vector3uint8 &rgb);
 
+Eigen::Vector3f ColorToFloat(uint8_t r, uint8_t g, uint8_t b);
+Eigen::Vector3f ColorToFloat(const Eigen::Vector3uint8 &rgb);
+
 /// Function to compute the covariance matrix of a set of points.
 template <typename IdxType>
 Eigen::Matrix3d ComputeCovariance(const std::vector<Eigen::Vector3d> &points,
+                                  const std::vector<IdxType> &indices);
+template <typename IdxType>
+Eigen::Matrix3f ComputeCovariancef(const std::vector<Eigen::Vector3f> &points,
                                   const std::vector<IdxType> &indices);
 
 /// Function to compute the mean and covariance matrix of a set of points.
 template <typename IdxType>
 std::tuple<Eigen::Vector3d, Eigen::Matrix3d> ComputeMeanAndCovariance(
         const std::vector<Eigen::Vector3d> &points,
+        const std::vector<IdxType> &indices);
+template <typename IdxType>
+std::tuple<Eigen::Vector3f, Eigen::Matrix3f> ComputeMeanAndCovariancef(
+        const std::vector<Eigen::Vector3f> &points,
         const std::vector<IdxType> &indices);
 }  // namespace utility
 }  // namespace open3d

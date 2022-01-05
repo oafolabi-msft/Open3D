@@ -66,6 +66,8 @@ public:
         OrientedBoundingBox = 11,
         /// AxisAlignedBoundingBox
         AxisAlignedBoundingBox = 12,
+        /// PointCloudf
+        PointCloudf = 13,
     };
 
 public:

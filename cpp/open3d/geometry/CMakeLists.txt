@@ -2,19 +2,23 @@
 set(ALL_SOURCE_FILES
     BoundingVolume.cpp
     EstimateNormals.cpp
+    EstimateNormalsf.cpp
     Geometry3D.cpp
+    Geometry3Df.cpp
     HalfEdgeTriangleMesh.cpp
     ISSKeypoints.cpp
     Image.cpp
     ImageFactory.cpp
     IntersectionTest.cpp
     KDTreeFlann.cpp
+    KDTreeFlannf.cpp
     Line3D.cpp
     LineSet.cpp
     LineSetFactory.cpp
     MeshBase.cpp
     # Octree.cpp
     PointCloud.cpp
+    PointCloudf.cpp
     PointCloudCluster.cpp
     PointCloudFactory.cpp
     PointCloudSegmentation.cpp

@@ -10,11 +10,15 @@ set(ALL_SOURCE_FILES
     registration/GlobalOptimization.cpp
     registration/RobustKernel.cpp
     registration/Registration.cpp
+    registration/Registrationf.cpp
     registration/FastGlobalRegistration.cpp
     registration/ColoredICP.cpp
+    registration/ColoredICPf.cpp
     registration/PoseGraph.cpp
     registration/TransformationEstimation.cpp
+    registration/TransformationEstimationf.cpp
     registration/CorrespondenceChecker.cpp
+    registration/CorrespondenceCheckerf.cpp
     registration/Feature.cpp
     )
 add_library(pipelines OBJECT ${ALL_SOURCE_FILES})
